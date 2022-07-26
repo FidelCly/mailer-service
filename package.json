@@ -19,12 +19,13 @@
   },
   "homepage": "https://github.com/FideCly/mailer-service#readme",
   "dependencies": {
+    "body-parser": "^1.19.1",
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "0.3.7",
     "mysql": "^2.14.1",
-    "body-parser": "^1.19.1"
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.7"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
