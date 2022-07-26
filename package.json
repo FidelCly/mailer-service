@@ -1,0 +1,38 @@
+{
+  "name": "mailer-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "ENV_FILE=.env.test jest --passWithNoTests",
+    "typeorm": "typeorm-ts-node-commonjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FideCly/mailer-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FideCly/mailer-service/issues"
+  },
+  "homepage": "https://github.com/FideCly/mailer-service#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.17.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.7",
+    "mysql": "^2.14.1",
+    "body-parser": "^1.19.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.6",
+    "jest": "^28.1.3",
+    "supertest": "^6.2.4",
+    "ts-jest": "^28.0.7",
+    "ts-node": "10.7.0",
+    "@types/node": "^16.11.10",
+    "typescript": "4.5.2"
+  }
+}
