@@ -8,7 +8,7 @@ export class EmailRequestDto implements SendRequest {
 
   @IsNotEmpty()
   @IsEmail()
-  readonly recipients: string; // format => "Recipient_name <email@test>" if multiple recipients, you can use "," separate
+  readonly recipients: string[]; // format => "Recipient_name <email@test>" if multiple recipients, you can use "," separate
 
   @IsNotEmpty()
   @IsString()

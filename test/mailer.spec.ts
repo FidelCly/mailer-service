@@ -18,7 +18,7 @@ describe('CampaignController', () => {
   describe('send', () => {
     it('should send an email', async () => {
       const payload: EmailRequestDto = {
-        senderEmail: 'FideCly <contact@fidelcly.com>',
+        senderEmail: 'contact@fidelcly.com',
         subject: 'Test Email',
         recipients: ['recipient@fidelcly.com'],
         textData: 'This is a test email',

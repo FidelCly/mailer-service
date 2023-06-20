@@ -18,7 +18,7 @@ export class MailjetService {
 
   async sendEmail(data: EmailRequestDto): Promise<SendResponse> {
     try {
-      await this.mailjet.post('send', { version: 'v3.1' }).request({
+      await this.mailjet.post('send', { lsversion: 'v3.1' }).request({
         Messages: [
           {
             From: {
@@ -27,14 +27,13 @@ export class MailjetService {
                 data.senderEmail.split('<')[0]?.trim() ||
                 data.senderEmail.trim(),
             },
-            To: data.recipients.split(',').map((recipient) => ({
+            To: data.recipients.map((recipient) => ({
               Email: recipient,
               Name: recipient.split('<')[0]?.trim() || recipient.trim(),
             })),
 
             Subject: data.subject,
             TextPart: data.textData,
-            //   HTMLPart: data.htmlData
           },
         ],
       });
