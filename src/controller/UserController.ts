@@ -1,6 +1,6 @@
-import { AppDataSource } from "../data-source";
-import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
+import { AppDataSource } from '../data-source';
+import { NextFunction, Request, Response } from 'express';
+import { User } from '../entity/User';
 
 export class UserController {
   private userRepository = AppDataSource.getRepository(User);
@@ -20,7 +20,7 @@ export class UserController {
   }
 
   async remove(request: Request, response: Response, next: NextFunction) {
-    let userToRemove = await this.userRepository.findOneBy({
+    const userToRemove = await this.userRepository.findOneBy({
       id: Number(request.params.id),
     });
     await this.userRepository.remove(userToRemove);

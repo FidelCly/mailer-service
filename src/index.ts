@@ -1,15 +1,15 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import * as dotenv from "dotenv";
-import { Request, Response } from "express";
-import { AppDataSource } from "./data-source";
-import { Routes } from "./routes";
-import { User } from "./entity/User";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as dotenv from 'dotenv';
+import { Request, Response } from 'express';
+import { AppDataSource } from './data-source';
+import { Routes } from './routes';
+import { User } from './entity/User';
 
 AppDataSource.initialize()
   .then(async () => {
     // configure dotenv
-    dotenv.config({ path: __dirname + "/.env" });
+    dotenv.config({ path: __dirname + '/.env' });
 
     // create express app
     const app = express();
@@ -26,18 +26,18 @@ AppDataSource.initialize()
           const result = new (route.controller as any)()[route.action](
             req,
             res,
-            next
+            next,
           );
           if (result instanceof Promise) {
             result.then((result) =>
               result !== null && result !== undefined
                 ? res.send(result)
-                : undefined
+                : undefined,
             );
           } else if (result !== null && result !== undefined) {
             res.json(result);
           }
-        }
+        },
       );
     });
 
@@ -50,22 +50,22 @@ AppDataSource.initialize()
     // insert new users for test
     await AppDataSource.manager.save(
       AppDataSource.manager.create(User, {
-        firstName: "Timber",
-        lastName: "Saw",
+        firstName: 'Timber',
+        lastName: 'Saw',
         age: 27,
-      })
+      }),
     );
 
     await AppDataSource.manager.save(
       AppDataSource.manager.create(User, {
-        firstName: "Phantom",
-        lastName: "Assassin",
+        firstName: 'Phantom',
+        lastName: 'Assassin',
         age: 24,
-      })
+      }),
     );
 
     console.log(
-      `Express server has started on port ${port}. Open http://localhost:${port}/users to see results`
+      `Express server has started on port ${port}. Open http://localhost:${port}/users to see results`,
     );
   })
   .catch((error) => console.log(error));
