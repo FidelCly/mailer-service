@@ -6,7 +6,9 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "test": "ENV_FILE=.env.test jest --passWithNoTests",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   "dependencies": {
     "body-parser": "^1.19.1",
     "dotenv": "^16.0.1",
+    "eslint": "^8.43.0",
     "express": "^4.17.2",
     "mysql": "^2.14.1",
     "pg": "^8.7.3",
@@ -29,11 +32,15 @@
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
+    "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jest": "^28.1.3",
+    "prettier": "^2.8.8",
     "supertest": "^6.2.4",
     "ts-jest": "^28.0.7",
     "ts-node": "10.7.0",
-    "@types/node": "^16.11.10",
     "typescript": "4.5.2"
   }
 }
