@@ -40,7 +40,6 @@ export class MailjetService {
 
       return { status: 200, errors: null } as SendResponse;
     } catch (error) {
-      console.log('🚀 ~ MaijetService ~ sendEmail ~ error:', error);
       return { status: 500, errors: [error] } as SendResponse;
     }
   }

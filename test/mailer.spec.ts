@@ -1,3 +1,4 @@
+import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { CampaignController } from '../src/campaign/campaign.controller';
 import { EmailRequestDto } from '../src/campaign/email.dto';
@@ -8,6 +9,11 @@ describe('CampaignController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        ConfigModule.forRoot({
+          envFilePath: ['.env', '.env.developement', '.env.local'],
+        }),
+      ],
       controllers: [CampaignController],
       providers: [MailjetService],
     }).compile();

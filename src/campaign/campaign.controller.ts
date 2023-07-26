@@ -1,8 +1,8 @@
 import { Controller, Inject } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
+import { CAMPAIGN_SERVICE_NAME, SendResponse } from './campaign.pb';
 import { EmailRequestDto } from './email.dto';
 import { MailjetService } from './maijet.service';
-import { CAMPAIGN_SERVICE_NAME, SendResponse } from './campaign.pb';
 
 @Controller()
 export class CampaignController {
