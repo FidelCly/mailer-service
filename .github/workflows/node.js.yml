@@ -35,5 +35,8 @@ jobs:
         run: npm run build --if-present
 
       - name: Run tests
+        env:
+          MJ_APIKEY: ${{ secrets.MJ_APIKEY }}
+          MJ_SECRETKEY: ${{ secrets.MJ_SECRETKEY }}
         run: npm run test
 
