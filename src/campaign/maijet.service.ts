@@ -17,29 +17,37 @@ export class MailjetService {
   }
 
   async sendEmail(data: EmailRequestDto): Promise<SendResponse> {
+    console.log('🚀 ~ MailjetService ~ sendEmail ~ data:', data);
     try {
-      await this.mailjet.post('send', { version: 'v3.1' }).request({
-        Messages: [
-          {
-            From: {
-              Email: data.senderEmail,
-              Name:
-                data.senderEmail.split('<')[0]?.trim() ||
-                data.senderEmail.trim(),
-            },
-            To: data.recipients.map((recipient) => ({
-              Email: recipient,
-              Name: recipient.split('<')[0]?.trim() || recipient.trim(),
-            })),
+      const result = await this.mailjet
+        .post('send', { version: 'v3.1' })
+        .request({
+          Messages: [
+            {
+              From: {
+                Email: data.senderEmail,
+                Name:
+                  data.senderEmail.split('<')[0]?.trim() ||
+                  data.senderEmail.trim(),
+              },
+              To: data.recipients.map((recipient) => ({
+                Email: recipient,
+                Name: recipient.split('<')[0]?.trim() || recipient.trim(),
+              })),
 
-            Subject: data.subject,
-            TextPart: data.textData,
-          },
-        ],
-      });
+              Subject: data.subject,
+              TextPart: data.textData,
+            },
+          ],
+        });
+      console.log('🚀 ~ MailjetService ~ sendEmail ~ result:', result);
+
+      if (result.status !== 200)
+        throw new Error('An error occurred while sending the email');
 
       return { status: 200, errors: null } as SendResponse;
     } catch (error) {
+      console.log('🚀 ~ MailjetService ~ sendEmail ~ error:', error);
       return { status: 500, errors: [error] } as SendResponse;
     }
   }
