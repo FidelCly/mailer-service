@@ -41,7 +41,10 @@ export class MailjetService {
 
       return { status: 200, errors: null } as SendResponse;
     } catch (error) {
-      return { status: 500, errors: [error] } as SendResponse;
+      return {
+        status: error.response.status,
+        errors: [error.orginalMessage || 'Une erreur est survenue'],
+      } as SendResponse;
     }
   }
 }
