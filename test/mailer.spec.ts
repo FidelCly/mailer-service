@@ -48,7 +48,7 @@ describe('CampaignController', () => {
       };
 
       const result = await mailjetService.sendEmail(payload);
-      expect(result.status).toBe(500);
+      expect(result.status).toBe(400);
       expect(result.errors).toBeDefined();
     });
   });
