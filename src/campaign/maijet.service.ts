@@ -14,36 +14,30 @@ export class MailjetService {
       process.env.MJ_APIKEY,
       process.env.MJ_SECRETKEY,
     );
-    console.log(
-      '🚀 ~ MailjetService ~ constructor ~ process.env.MJ_APIKEY:',
-      process.env.MJ_SECRETKEY,
-    );
   }
 
   async sendEmail(data: EmailRequestDto): Promise<SendResponse> {
     try {
-      const result = await this.mailjet
-        .post('send', { version: 'v3.1' })
-        .request({
-          Messages: [
-            {
-              From: {
-                Email: data.senderEmail,
-                Name:
-                  data.senderEmail.split('<')[0]?.trim() ||
-                  data.senderEmail.trim(),
-              },
-              To: data.recipients.map((recipient) => ({
-                Email: recipient,
-                Name: recipient.split('<')[0]?.trim() || recipient.trim(),
-              })),
-
-              Subject: data.subject,
-              // TextPart: data.textData,
-              HTMLPart: data.htmlData,
+      await this.mailjet.post('send', { version: 'v3.1' }).request({
+        Messages: [
+          {
+            From: {
+              Email: data.senderEmail,
+              Name:
+                data.senderEmail.split('<')[0]?.trim() ||
+                data.senderEmail.trim(),
             },
-          ],
-        });
+            To: data.recipients.map((recipient) => ({
+              Email: recipient,
+              Name: recipient.split('<')[0]?.trim() || recipient.trim(),
+            })),
+
+            Subject: data.subject,
+            // TextPart: data.textData,
+            HTMLPart: data.htmlData,
+          },
+        ],
+      });
 
       return { status: 200, errors: null } as SendResponse;
     } catch (error) {
