@@ -14,9 +14,9 @@ export class EmailRequestDto implements SendRequest {
   @IsString()
   readonly subject: string;
 
-  @IsOptional()
-  @IsString()
-  readonly textData: string;
+  // @IsOptional()
+  // @IsString()
+  // readonly textData: string;
 
   @IsOptional()
   @IsString()
